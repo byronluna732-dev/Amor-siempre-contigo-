@@ -22,17 +22,11 @@
             color: #4a4a4a;
         }
 
-        .card-container {
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 30px 24px;
-            max-width: 480px;
+        .main-wrapper {
             width: 100%;
-            box-shadow: 0 12px 30px rgba(233, 30, 99, 0.12);
-            border: 2px solid #ffb6c1;
+            max-width: 500px;
+            margin: 0 auto;
             text-align: center;
-            position: relative;
-            overflow: hidden;
         }
 
         .step-page {
@@ -49,25 +43,25 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Títulos y textos */
+        /* Títulos y Textos */
         h1 {
             color: #d81b60;
-            font-size: 1.8rem;
-            margin-bottom: 15px;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
             font-weight: 700;
         }
 
         h2 {
             color: #e91e63;
-            font-size: 1.3rem;
-            margin-bottom: 12px;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
         }
 
         p {
             line-height: 1.6;
-            color: #555;
-            font-size: 1rem;
-            margin-bottom: 16px;
+            color: #444;
+            font-size: 1.05rem;
+            margin-bottom: 20px;
             text-align: left;
         }
 
@@ -76,8 +70,8 @@
             background: linear-gradient(45deg, #e91e63, #ff4081);
             color: white;
             border: none;
-            padding: 14px 28px;
-            font-size: 1.05rem;
+            padding: 16px 32px;
+            font-size: 1.1rem;
             font-weight: 600;
             border-radius: 50px;
             cursor: pointer;
@@ -93,187 +87,201 @@
             box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
         }
 
-        .btn-secondary {
-            background: #f8bbd0;
-            color: #880e4f;
-            border: none;
-            padding: 10px 20px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        /* Recuerdos (Paso 2) */
-        .memory-media {
+        /* Multimedia */
+        .media-container {
             width: 100%;
-            height: 240px;
-            border-radius: 16px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(233, 30, 99, 0.15);
+            margin-bottom: 20px;
+            border: 3px solid #fff;
+        }
+
+        .media-container img, .media-container video {
+            width: 100%;
+            height: 320px;
             object-fit: cover;
-            margin-bottom: 15px;
-            border: 2px solid #f8bbd0;
+            display: block;
         }
 
-        .nav-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 15px;
-            gap: 10px;
-        }
-
-        .counter {
-            font-size: 0.85rem;
-            color: #ad1457;
-            font-weight: 600;
-        }
-
-        /* Juego (Paso 3) */
-        .game-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+        /* Regalitos en movimiento (Paso Juego) */
+        .moving-area {
+            position: relative;
+            height: 380px;
             margin: 20px 0;
+            overflow: hidden;
         }
 
-        .game-card {
-            background: #ffe4e8;
-            border: 2px dashed #f48fb1;
-            border-radius: 16px;
-            padding: 20px 10px;
+        .floating-gift {
+            position: absolute;
+            background: #ffffff;
+            border: 2px solid #f48fb1;
+            border-radius: 20px;
+            padding: 15px;
+            width: 80%;
+            left: 10%;
             cursor: pointer;
+            box-shadow: 0 6px 15px rgba(233, 30, 99, 0.15);
             transition: all 0.3s;
-            font-weight: bold;
-            color: #c2185b;
-            min-height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             text-align: center;
         }
 
-        .game-card.revealed {
-            background: #fff;
-            border-style: solid;
+        .floating-gift.revealed {
+            animation: none !important;
+            background: #fff0f5;
             border-color: #e91e63;
+        }
+
+        /* Animaciones para flotar horizontalmente */
+        @keyframes floatLeftRight1 {
+            0%, 100% { transform: translateX(-20px); }
+            50% { transform: translateX(20px); }
+        }
+
+        @keyframes floatLeftRight2 {
+            0%, 100% { transform: translateX(25px); }
+            50% { transform: translateX(-25px); }
+        }
+
+        .gift-1 { top: 10px; animation: floatLeftRight1 3.5s ease-in-out infinite; }
+        .gift-2 { top: 100px; animation: floatLeftRight2 4s ease-in-out infinite; }
+        .gift-3 { top: 190px; animation: floatLeftRight1 3.8s ease-in-out infinite; }
+        .gift-4 { top: 280px; animation: floatLeftRight2 4.2s ease-in-out infinite; }
+
+        .gift-title {
+            font-weight: bold;
+            color: #d81b60;
+            font-size: 1rem;
+        }
+
+        .gift-text {
+            display: none;
             color: #444;
-            font-weight: normal;
-            font-size: 0.9rem;
-        }
-
-        /* Corazones flotantes */
-        .floating-heart {
-            position: absolute;
-            font-size: 20px;
-            animation: floatUp 2s ease-out forwards;
-            pointer-events: none;
-        }
-
-        @keyframes floatUp {
-            0% { opacity: 1; transform: translateY(0) scale(1); }
-            100% { opacity: 0; transform: translateY(-100px) scale(1.5); }
+            font-size: 0.95rem;
+            margin-top: 8px;
         }
     </style>
 </head>
 <body>
 
-    <div class="card-container">
+    <div class="main-wrapper">
 
         <!-- PASO 1: Bienvenida -->
         <div id="step-1" class="step-page active">
-            <div style="font-size: 60px; margin-bottom: 10px;">💖</div>
+            <div style="font-size: 80px; margin-bottom: 15px;">💖</div>
             <h1>¡Olaa Amor!</h1>
-            <p style="text-align: center; margin-bottom: 25px;">
-                Prepara un momento tranquilo y presiona el botón para continuar.
+            <p style="text-align: center; margin-bottom: 30px;">
+                Prepara un momento tranquilo y machuca el botón para continuar.
             </p>
             <button class="btn-pink" onclick="goToStep(2)">Sigue 💖</button>
         </div>
 
-        <!-- PASO 2: Recuerdos (1 por página) -->
+        <!-- PASO 2: Recuerdo 1 (Foto 1) -->
         <div id="step-2" class="step-page">
             <h2>Nuestros Momentos 💕</h2>
-            
-            <!-- Recuerdo 1 -->
-            <div id="memory-1" class="memory-item">
-                <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80" class="memory-media" alt="Foto 1">
-                <p><strong>Recuerdo 1:</strong> [EDITA AQUÍ TU TEXTO PARA LA FOTO 1]</p>
+            <div class="media-container">
+                <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80" alt="Foto 1">
             </div>
-
-            <!-- Recuerdo 2 -->
-            <div id="memory-2" class="memory-item" style="display: none;">
-                <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=600&q=80" class="memory-media" alt="Foto 2">
-                <p><strong>Recuerdo 2:</strong> [EDITA AQUÍ TU TEXTO PARA LA FOTO 2]</p>
-            </div>
-
-            <!-- Recuerdo 3 -->
-            <div id="memory-3" class="memory-item" style="display: none;">
-                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80" class="memory-media" alt="Foto 3">
-                <p><strong>Recuerdo 3:</strong> [EDITA AQUÍ TU TEXTO PARA LA FOTO 3]</p>
-            </div>
-
-            <!-- Recuerdo 4 -->
-            <div id="memory-4" class="memory-item" style="display: none;">
-                <img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=600&q=80" class="memory-media" alt="Foto 4">
-                <p><strong>Recuerdo 4:</strong> [EDITA AQUÍ TU TEXTO PARA LA FOTO 4]</p>
-            </div>
-
-            <!-- Recuerdo 5 -->
-            <div id="memory-5" class="memory-item" style="display: none;">
-                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" class="memory-media" alt="Foto 5">
-                <p><strong>Recuerdo 5:</strong> [EDITA AQUÍ TU TEXTO PARA LA FOTO 5]</p>
-            </div>
-
-            <!-- Recuerdo 6 -->
-            <div id="memory-6" class="memory-item" style="display: none;">
-                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80" class="memory-media" alt="Foto 6">
-                <p><strong>Recuerdo 6:</strong> [EDITA AQUÍ TU TEXTO PARA LA FOTO 6]</p>
-            </div>
-
-            <!-- Controles de navegación de recuerdos -->
-            <div class="nav-controls">
-                <button class="btn-secondary" onclick="changeMemory(-1)">Anterior</button>
-                <span class="counter" id="memory-counter">1 / 6</span>
-                <button class="btn-secondary" onclick="changeMemory(1)">Siguiente</button>
-            </div>
-
-            <button class="btn-pink" onclick="goToStep(3)" style="margin-top: 20px;">Sí, sigue ✨</button>
+            <p><strong>Lo que sentí este día:</strong> [EDITA AQUÍ TU TEXTO DE LO QUE SENTISTE CON ESTA FOTO]</p>
+            <button class="btn-pink" onclick="goToStep(3)">Siguiente recuerdo ➔</button>
         </div>
 
-        <!-- PASO 3: Juego interactivo -->
+        <!-- PASO 3: Recuerdo 2 (Foto 2) -->
         <div id="step-3" class="step-page">
-            <h2>Descubre los mensajes 🎁</h2>
-            <p style="text-align: center; font-size: 0.9rem;">Haz clic en cada tarjeta para descubrir la sorpresa:</p>
+            <h2>Nuestros Momentos 💕</h2>
+            <div class="media-container">
+                <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=600&q=80" alt="Foto 2">
+            </div>
+            <p><strong>Lo que sentí este día:</strong> [EDITA AQUÍ TU TEXTO DE LO QUE SENTISTE CON ESTA FOTO]</p>
+            <button class="btn-pink" onclick="goToStep(4)">Siguiente recuerdo ➔</button>
+        </div>
+
+        <!-- PASO 4: Recuerdo 3 (Video 1) -->
+        <div id="step-4" class="step-page">
+            <h2>Nuestros Momentos 💕</h2>
+            <div class="media-container">
+                <video controls poster="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80">
+                    <source src="TU_VIDEO_1.mp4" type="video/mp4">
+                    Tu navegador no soporta videos.
+                </video>
+            </div>
+            <p><strong>Lo que sentí este día:</strong> [EDITA AQUÍ TU TEXTO DE LO QUE SENTISTE CON ESTE VIDEO]</p>
+            <button class="btn-pink" onclick="goToStep(5)">Siguiente recuerdo ➔</button>
+        </div>
+
+        <!-- PASO 5: Recuerdo 4 (Video 2) -->
+        <div id="step-5" class="step-page">
+            <h2>Nuestros Momentos 💕</h2>
+            <div class="media-container">
+                <video controls poster="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=600&q=80">
+                    <source src="TU_VIDEO_2.mp4" type="video/mp4">
+                    Tu navegador no soporta videos.
+                </video>
+            </div>
+            <p><strong>Lo que sentí este día:</strong> [EDITA AQUÍ TU TEXTO DE LO QUE SENTISTE CON ESTE VIDEO]</p>
+            <button class="btn-pink" onclick="goToStep(6)">Siguiente recuerdo ➔</button>
+        </div>
+
+        <!-- PASO 6: Recuerdo 5 (Video 3) -->
+        <div id="step-6" class="step-page">
+            <h2>Nuestros Momentos 💕</h2>
+            <div class="media-container">
+                <video controls poster="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80">
+                    <source src="TU_VIDEO_3.mp4" type="video/mp4">
+                    Tu navegador no soporta videos.
+                </video>
+            </div>
+            <p><strong>Lo que sentí este día:</strong> [EDITA AQUÍ TU TEXTO DE LO QUE SENTISTE CON ESTE VIDEO]</p>
             
-            <div class="game-grid">
-                <div class="game-card" onclick="revealCard(this, '[EDITA TEXTO TARJETA 1]')">
-                    <span>Haz clic aquí ✨</span>
+            <!-- Botón especial después de los recuerdos -->
+            <button class="btn-pink" onclick="goToStep(7)" style="margin-top: 25px; background: linear-gradient(45deg, #d81b60, #ff1744);">
+                Si Amor sigue ✨
+            </button>
+        </div>
+
+        <!-- PASO 7: Juego interactivo (Regalitos en movimiento) -->
+        <div id="step-7" class="step-page">
+            <h2>Toca un regalito 🎁</h2>
+            <p style="text-align: center; font-size: 0.95rem; margin-bottom: 10px;">
+                Toca los detalles en movimiento para detenerlos y leerlos:
+            </p>
+
+            <div class="moving-area">
+                <div class="floating-gift gift-1" onclick="revealGift(this)">
+                    <span class="gift-title">Un detalle para ti ✨</span>
+                    <div class="gift-text">[EDITA AQUÍ EL MENSAJE DEL REGALO 1]</div>
                 </div>
-                <div class="game-card" onclick="revealCard(this, '[EDITA TEXTO TARJETA 2]')">
-                    <span>Haz clic aquí 💕</span>
+
+                <div class="floating-gift gift-2" onclick="revealGift(this)">
+                    <span class="gift-title">Algo importante 💕</span>
+                    <div class="gift-text">[EDITA AQUÍ EL MENSAJE DEL REGALO 2]</div>
                 </div>
-                <div class="game-card" onclick="revealCard(this, '[EDITA TEXTO TARJETA 3]')">
-                    <span>Haz clic aquí 🌸</span>
+
+                <div class="floating-gift gift-3" onclick="revealGift(this)">
+                    <span class="gift-title">Para que lo recuerdes 🌸</span>
+                    <div class="gift-text">[EDITA AQUÍ EL MENSAJE DEL REGALO 3]</div>
                 </div>
-                <div class="game-card" onclick="revealCard(this, '[EDITA TEXTO TARJETA 4]')">
-                    <span>Haz clic aquí 💗</span>
+
+                <div class="floating-gift gift-4" onclick="revealGift(this)">
+                    <span class="gift-title">Con todo mi corazón 💗</span>
+                    <div class="gift-text">[EDITA AQUÍ EL MENSAJE DEL REGALO 4]</div>
                 </div>
             </div>
 
-            <button class="btn-pink" onclick="goToStep(4)">Continuar a la carta final 💌</button>
+            <button class="btn-pink" onclick="goToStep(8)">Continuar a la carta final 💌</button>
         </div>
 
-        <!-- PASO 4: Carta Final -->
-        <div id="step-4" class="step-page">
-            <div style="font-size: 50px; margin-bottom: 10px;">💌</div>
+        <!-- PASO 8: Carta Final -->
+        <div id="step-8" class="step-page">
+            <div style="font-size: 60px; margin-bottom: 15px;">💌</div>
             <h2>Para Ti</h2>
             
             <p>Hola,</p>
-            <p>[EDITA AQUÍ TU PARRAFO 1: Dile lo mucho que la aprecias y que no quieres que se sienta presionada].</p>
-            <p>[EDITA AQUÍ TU PARRAFO 2: Recuérdale que para ti siempre ha sido más que suficiente].</p>
-            <p>[EDITA AQUÍ TU PARRAFO 3: Déjale saber que cuenta contigo y que le das su espacio].</p>
+            <p>[EDITA AQUÍ TU PÁRRAFO 1: Expresa lo mucho que significa para ti y tus sentimientos sinceros].</p>
+            <p>[EDITA AQUÍ TU PÁRRAFO 2: Recuérdale que para ti ella siempre ha sido más que suficiente].</p>
+            <p>[EDITA AQUÍ TU PÁRRAFO 3: Déjale saber que cuenta contigo sin presiones y a su propio tiempo].</p>
             
-            <p style="text-align: center; font-style: italic; color: #ad1457; margin-top: 20px;">
+            <p style="text-align: center; font-style: italic; color: #ad1457; margin-top: 30px; font-weight: 600;">
                 [EDITA TU DESPEDIDA. Ej: Con mucho cariño, siempre.]
             </p>
         </div>
@@ -281,50 +289,21 @@
     </div>
 
     <script>
-        // Navegación entre pasos
+        // Cambiar entre páginas
         function goToStep(stepNumber) {
             document.querySelectorAll('.step-page').forEach(page => {
                 page.classList.remove('active');
             });
             document.getElementById('step-' + stepNumber).classList.add('active');
-            window.scrollTo(0, 0);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Navegación entre recuerdos
-        let currentMemory = 1;
-        const totalMemories = 6;
-
-        function changeMemory(direction) {
-            document.getElementById('memory-' + currentMemory).style.display = 'none';
-            currentMemory += direction;
-
-            if (currentMemory < 1) currentMemory = totalMemories;
-            if (currentMemory > totalMemories) currentMemory = 1;
-
-            document.getElementById('memory-' + currentMemory).style.display = 'block';
-            document.getElementById('memory-counter').innerText = `${currentMemory} / ${totalMemories}`;
-        }
-
-        // Revelar tarjeta del juego
-        function revealCard(element, text) {
+        // Detener animación y revelar regalo al tocar
+        function revealGift(element) {
             if (!element.classList.contains('revealed')) {
                 element.classList.add('revealed');
-                element.innerHTML = text;
-                createHearts(element);
-            }
-        }
-
-        // Animación de corazones al hacer clic
-        function createHearts(target) {
-            for (let i = 0; i < 5; i++) {
-                const heart = document.createElement('div');
-                heart.classList.add('floating-heart');
-                heart.innerText = '💖';
-                heart.style.left = (target.offsetLeft + Math.random() * target.offsetWidth) + 'px';
-                heart.style.top = target.offsetTop + 'px';
-                document.querySelector('.card-container').appendChild(heart);
-
-                setTimeout(() => heart.remove(), 2000);
+                const giftText = element.querySelector('.gift-text');
+                giftText.style.display = 'block';
             }
         }
     </script>
